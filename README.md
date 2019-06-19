@@ -42,7 +42,7 @@ int main(void) {
     auto entry = Entry("FileX", "GroupX");
     entry.name = "File0";
     // entry.group = "Group0";  // compilation error: get-only property
-    entry.md5_str = "a95c530a7af5f492a74499e70578d150x";  // validating 32 hexadecimal digits
+    entry.md5_str = "a95c530a7af5f492a74499e70578d150";  // validating 32 hexadecimal digits
 
     std::cout << "Name:\t" << entry.name << std::endl;
     std::cout << "Group:\t" << entry.group << std::endl;
@@ -72,21 +72,21 @@ class Property;
 
 ```cpp
 template <class G, class S>
-Property(G getter, S setter)
+Property(G getter, S setter);
 ```
 
 `PropertyMode::GetOnly`
 
 ```cpp
 template <class G>
-Property(G getter)
+Property(G getter);
 ```
 
 `PropertyMode::SetOnly`
 
 ```cpp
 template <class S>
-Property(S setter)
+Property(S setter);
 ```
 
 Requirements
@@ -109,6 +109,8 @@ class AutoProperty;
 
 `T` may be a const reference type typically with the same reason above.
 
+#### Constructor
+
 ### Get
 
 `Property<T>` is implicitly casted to `T` through the get function.
@@ -122,7 +124,7 @@ int b = p;         // a == b
 const int& c = p;  // &a == &c
 
 // explicit casting
-auto d = p();         // auto -> int ()
+auto d = p();         // auto -> int
 const auto& e = p();  // const auto& -> const int&
 
 // NG
@@ -133,9 +135,9 @@ Because operator `.` cannot be overloaded, you should use explicit casting `oper
 
 ```cpp
 std::string str;
-auto p3 = Property<std::string&, PropertyMode::GetOnly>([&str]() -> std::string& { return str; });
-p3().reserve(3);    // OK
-p3.reserve(3);      // NG
+auto p = Property<std::string&, PropertyMode::GetOnly>([&str]() -> std::string& { return str; });
+p().reserve(3);    // OK
+p.reserve(3);      // NG
 ```
 
 Use `operator()()` also when a type deducing problem occurs, for example duplicate definitions or overloading in other library.
@@ -148,6 +150,30 @@ Use `operator()()` also when a type deducing problem occurs, for example duplica
 std::string str;
 auto p = Property<std::string&, PropertyMode::SetOnly>([&str](const std::string& v) { str = v; });
 p = "new string";  // char* -> std::string -> Property<std::string&>
+```
+
+### Copy
+
+Copy constructors are deleted. Copy assign operators act as `set` the left hand side to the  `get` value of the right hand side.
+
+```cpp
+std::string str0 = "test0";
+auto p0 = Property<std::string&, PropertyMode::GetOnly>([&str0]() -> std::string& { return str0; });
+
+// copy constructor
+// auto p1 = p0;    // NG: copy constructor is deleted
+
+std::string str1 = "test1";
+auto p1 = Property<std::string&, PropertyMode::SetOnly>([&str1](const std::string& v) { str1 = v; });
+
+// copy assign operator
+p1 = p0;    // p1 = p0() -> str1 = str0;
+
+auto ap0 = AutoProperty<const std::string&>();
+
+// copy constructor
+auto ap1 = ap0;  // OK: copy constructor is not called
+                 // ->  auto ap1 = AutoProperty<const std::string&>(ap0())
 ```
 
 ### Operators
