@@ -111,6 +111,17 @@ class AutoProperty;
 
 #### Constructor
 
+The initial value of the auto-property is given by the constructor. 
+
+```cpp
+Property();
+```
+
+```cpp
+template <typename V>
+Property(V&& initial_value);
+```
+
 ### Get
 
 `Property<T>` is implicitly casted to `T` through the get function.
