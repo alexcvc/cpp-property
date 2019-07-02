@@ -237,190 +237,190 @@ public:
         return operator=(std::move(*this).Derived()() ^ right);
     }
 #pragma endregion
-#pragma region global operators(property vs.general)
-    template <typename U, std::enable_if_t<!isPropertyIgnRefV<U>>* = nullptr>
-    friend decltype(auto) operator*(const DerivedType& t1, U&& t2)
-    {
-        return t1() * std::forward<U>(t2);
-    }
-    template <typename U, std::enable_if_t<!isPropertyIgnRefV<U>>* = nullptr>
-    friend decltype(auto) operator/(const DerivedType& t1, U&& t2)
-    {
-        return t1() / std::forward<U>(t2);
-    }
-    template <typename U, std::enable_if_t<!isPropertyIgnRefV<U>>* = nullptr>
-    friend decltype(auto) operator%(const DerivedType& t1, U&& t2)
-    {
-        return t1() % std::forward<U>(t2);
-    }
-    template <typename U, std::enable_if_t<!isPropertyIgnRefV<U>>* = nullptr>
-    friend decltype(auto) operator+(const DerivedType& t1, U&& t2)
-    {
-        return t1() + std::forward<U>(t2);
-    }
-    template <typename U, std::enable_if_t<!isPropertyIgnRefV<U>>* = nullptr>
-    friend decltype(auto) operator-(const DerivedType& t1, U&& t2)
-    {
-        return t1() - std::forward<U>(t2);
-    }
-    template <typename U, std::enable_if_t<!isPropertyIgnRefV<U>>* = nullptr>
-    friend decltype(auto) operator<<(const DerivedType& t1, U&& t2)
-    {
-        return t1() << std::forward<U>(t2);
-    }
-    template <typename U, std::enable_if_t<!isPropertyIgnRefV<U>>* = nullptr>
-    friend decltype(auto) operator>>(const DerivedType& t1, U&& t2)
-    {
-        return t1() >> std::forward<U>(t2);
-    }
-    template <typename U, std::enable_if_t<!isPropertyIgnRefV<U>>* = nullptr>
-    friend decltype(auto) operator<(const DerivedType& t1, U&& t2)
-    {
-        return t1() < std::forward<U>(t2);
-    }
-    template <typename U, std::enable_if_t<!isPropertyIgnRefV<U>>* = nullptr>
-    friend decltype(auto) operator>(const DerivedType& t1, U&& t2)
-    {
-        return t1() > std::forward<U>(t2);
-    }
-    template <typename U, std::enable_if_t<!isPropertyIgnRefV<U>>* = nullptr>
-    friend decltype(auto) operator<=(const DerivedType& t1, U&& t2)
-    {
-        return t1() <= std::forward<U>(t2);
-    }
-    template <typename U, std::enable_if_t<!isPropertyIgnRefV<U>>* = nullptr>
-    friend decltype(auto) operator>=(const DerivedType& t1, U&& t2)
-    {
-        return t1() >= std::forward<U>(t2);
-    }
-    template <typename U, std::enable_if_t<!isPropertyIgnRefV<U>>* = nullptr>
-    friend decltype(auto) operator==(const DerivedType& t1, U&& t2)
-    {
-        return t1() == std::forward<U>(t2);
-    }
-    template <typename U, std::enable_if_t<!isPropertyIgnRefV<U>>* = nullptr>
-    friend decltype(auto) operator!=(const DerivedType& t1, U&& t2)
-    {
-        return t1() != std::forward<U>(t2);
-    }
-    template <typename U, std::enable_if_t<!isPropertyIgnRefV<U>>* = nullptr>
-    friend decltype(auto) operator&(const DerivedType& t1, U&& t2)
-    {
-        return t1() & std::forward<U>(t2);
-    }
-    template <typename U, std::enable_if_t<!isPropertyIgnRefV<U>>* = nullptr>
-    friend decltype(auto) operator^(const DerivedType& t1, U&& t2)
-    {
-        return t1() ^ std::forward<U>(t2);
-    }
-    template <typename U, std::enable_if_t<!isPropertyIgnRefV<U>>* = nullptr>
-    friend decltype(auto) operator|(const DerivedType& t1, U&& t2)
-    {
-        return t1() | std::forward<U>(t2);
-    }
-    template <typename U, std::enable_if_t<!isPropertyIgnRefV<U>>* = nullptr>
-    friend decltype(auto) operator&&(const DerivedType& t1, U&& t2)
-    {
-        return t1() && std::forward<U>(t2);
-    }
-    template <typename U, std::enable_if_t<!isPropertyIgnRefV<U>>* = nullptr>
-    friend decltype(auto) operator||(const DerivedType& t1, U&& t2)
-    {
-        return t1() || std::forward<U>(t2);
-    }
-    template <typename U, std::enable_if_t<!isPropertyIgnRefV<U>>* = nullptr>
-    friend decltype(auto) operator*(U&& t1, const DerivedType& t2)
-    {
-        return std::forward<U>(t1) * t2();
-    }
-    template <typename U, std::enable_if_t<!isPropertyIgnRefV<U>>* = nullptr>
-    friend decltype(auto) operator/(U&& t1, const DerivedType& t2)
-    {
-        return std::forward<U>(t1) / t2();
-    }
-    template <typename U, std::enable_if_t<!isPropertyIgnRefV<U>>* = nullptr>
-    friend decltype(auto) operator%(U&& t1, const DerivedType& t2)
-    {
-        return std::forward<U>(t1) % t2();
-    }
-    template <typename U, std::enable_if_t<!isPropertyIgnRefV<U>>* = nullptr>
-    friend decltype(auto) operator+(U&& t1, const DerivedType& t2)
-    {
-        return std::forward<U>(t1) + t2();
-    }
-    template <typename U, std::enable_if_t<!isPropertyIgnRefV<U>>* = nullptr>
-    friend decltype(auto) operator-(U&& t1, const DerivedType& t2)
-    {
-        return std::forward<U>(t1) - t2();
-    }
-    template <typename U, std::enable_if_t<!isPropertyIgnRefV<U>>* = nullptr>
-    friend decltype(auto) operator<<(U&& t1, const DerivedType& t2)
-    {
-        return std::forward<U>(t1) << t2();
-    }
-    template <typename U, std::enable_if_t<!isPropertyIgnRefV<U>>* = nullptr>
-    friend decltype(auto) operator>>(U&& t1, const DerivedType& right)
-    {
-        return std::forward<U>(t1) << right();
-    }
-    template <typename U, std::enable_if_t<!isPropertyIgnRefV<U>>* = nullptr>
-    friend decltype(auto) operator<(U&& t1, const DerivedType& t2)
-    {
-        return std::forward<U>(t1) < t2();
-    }
-    template <typename U, std::enable_if_t<!isPropertyIgnRefV<U>>* = nullptr>
-    friend decltype(auto) operator>(U&& t1, const DerivedType& t2)
-    {
-        return std::forward<U>(t1) > t2();
-    }
-    template <typename U, std::enable_if_t<!isPropertyIgnRefV<U>>* = nullptr>
-    friend decltype(auto) operator<=(U&& t1, const DerivedType& t2)
-    {
-        return std::forward<U>(t1) <= t2();
-    }
-    template <typename U, std::enable_if_t<!isPropertyIgnRefV<U>>* = nullptr>
-    friend decltype(auto) operator>=(U&& t1, const DerivedType& t2)
-    {
-        return std::forward<U>(t1) >= t2();
-    }
-    template <typename U, std::enable_if_t<!isPropertyIgnRefV<U>>* = nullptr>
-    friend decltype(auto) operator==(U&& t1, const DerivedType& t2)
-    {
-        return std::forward<U>(t1) == t2();
-    }
-    template <typename U, std::enable_if_t<!isPropertyIgnRefV<U>>* = nullptr>
-    friend decltype(auto) operator!=(U&& t1, const DerivedType& t2)
-    {
-        return std::forward<U>(t1) != t2();
-    }
-    template <typename U, std::enable_if_t<!isPropertyIgnRefV<U>>* = nullptr>
-    friend decltype(auto) operator&(U&& t1, const DerivedType& t2)
-    {
-        return std::forward<U>(t1) & t2();
-    }
-    template <typename U, std::enable_if_t<!isPropertyIgnRefV<U>>* = nullptr>
-    friend decltype(auto) operator^(U&& t1, const DerivedType& t2)
-    {
-        return std::forward<U>(t1) ^ t2();
-    }
-    template <typename U, std::enable_if_t<!isPropertyIgnRefV<U>>* = nullptr>
-    friend decltype(auto) operator|(U&& t1, const DerivedType& t2)
-    {
-        return std::forward<U>(t1) | t2();
-    }
-    template <typename U, std::enable_if_t<!isPropertyIgnRefV<U>>* = nullptr>
-    friend decltype(auto) operator&&(U&& t1, const DerivedType& t2)
-    {
-        return std::forward<U>(t1) && t2();
-    }
-    template <typename U, std::enable_if_t<!isPropertyIgnRefV<U>>* = nullptr>
-    friend decltype(auto) operator||(U&& t1, const DerivedType& t2)
-    {
-        return std::forward<U>(t1) || t2();
-    }
-#pragma endregion
 };
 
+#pragma region global operators(property vs.general)
+template <typename U, typename V, std::enable_if_t<!isPropertyIgnRefV<U> && isPropertyV<V>>* = nullptr>
+decltype(auto) operator*(const V& t1, U&& t2)
+{
+    return t1() * std::forward<U>(t2);
+}
+template <typename U, typename V, std::enable_if_t<!isPropertyIgnRefV<U> && isPropertyV<V>>* = nullptr>
+decltype(auto) operator/(const V& t1, U&& t2)
+{
+    return t1() / std::forward<U>(t2);
+}
+template <typename U, typename V, std::enable_if_t<!isPropertyIgnRefV<U> && isPropertyV<V>>* = nullptr>
+decltype(auto) operator%(const V& t1, U&& t2)
+{
+    return t1() % std::forward<U>(t2);
+}
+template <typename U, typename V, std::enable_if_t<!isPropertyIgnRefV<U> && isPropertyV<V>>* = nullptr>
+decltype(auto) operator+(const V& t1, U&& t2)
+{
+    return t1() + std::forward<U>(t2);
+}
+template <typename U, typename V, std::enable_if_t<!isPropertyIgnRefV<U> && isPropertyV<V>>* = nullptr>
+decltype(auto) operator-(const V& t1, U&& t2)
+{
+    return t1() - std::forward<U>(t2);
+}
+template <typename U, typename V, std::enable_if_t<!isPropertyIgnRefV<U> && isPropertyV<V>>* = nullptr>
+decltype(auto) operator<<(const V& t1, U&& t2)
+{
+    return t1() << std::forward<U>(t2);
+}
+template <typename U, typename V, std::enable_if_t<!isPropertyIgnRefV<U> && isPropertyV<V>>* = nullptr>
+decltype(auto) operator>>(const V& t1, U&& t2)
+{
+    return t1() >> std::forward<U>(t2);
+}
+template <typename U, typename V, std::enable_if_t<!isPropertyIgnRefV<U> && isPropertyV<V>>* = nullptr>
+decltype(auto) operator<(const V& t1, U&& t2)
+{
+    return t1() < std::forward<U>(t2);
+}
+template <typename U, typename V, std::enable_if_t<!isPropertyIgnRefV<U> && isPropertyV<V>>* = nullptr>
+decltype(auto) operator>(const V& t1, U&& t2)
+{
+    return t1() > std::forward<U>(t2);
+}
+template <typename U, typename V, std::enable_if_t<!isPropertyIgnRefV<U> && isPropertyV<V>>* = nullptr>
+decltype(auto) operator<=(const V& t1, U&& t2)
+{
+    return t1() <= std::forward<U>(t2);
+}
+template <typename U, typename V, std::enable_if_t<!isPropertyIgnRefV<U> && isPropertyV<V>>* = nullptr>
+decltype(auto) operator>=(const V& t1, U&& t2)
+{
+    return t1() >= std::forward<U>(t2);
+}
+template <typename U, typename V, std::enable_if_t<!isPropertyIgnRefV<U> && isPropertyV<V>>* = nullptr>
+decltype(auto) operator==(const V& t1, U&& t2)
+{
+    return t1() == std::forward<U>(t2);
+}
+template <typename U, typename V, std::enable_if_t<!isPropertyIgnRefV<U> && isPropertyV<V>>* = nullptr>
+decltype(auto) operator!=(const V& t1, U&& t2)
+{
+    return t1() != std::forward<U>(t2);
+}
+template <typename U, typename V, std::enable_if_t<!isPropertyIgnRefV<U> && isPropertyV<V>>* = nullptr>
+decltype(auto) operator&(const V& t1, U&& t2)
+{
+    return t1() & std::forward<U>(t2);
+}
+template <typename U, typename V, std::enable_if_t<!isPropertyIgnRefV<U> && isPropertyV<V>>* = nullptr>
+decltype(auto) operator^(const V& t1, U&& t2)
+{
+    return t1() ^ std::forward<U>(t2);
+}
+template <typename U, typename V, std::enable_if_t<!isPropertyIgnRefV<U> && isPropertyV<V>>* = nullptr>
+decltype(auto) operator|(const V& t1, U&& t2)
+{
+    return t1() | std::forward<U>(t2);
+}
+template <typename U, typename V, std::enable_if_t<!isPropertyIgnRefV<U> && isPropertyV<V>>* = nullptr>
+decltype(auto) operator&&(const V& t1, U&& t2)
+{
+    return t1() && std::forward<U>(t2);
+}
+template <typename U, typename V, std::enable_if_t<!isPropertyIgnRefV<U> && isPropertyV<V>>* = nullptr>
+decltype(auto) operator||(const V& t1, U&& t2)
+{
+    return t1() || std::forward<U>(t2);
+}
+template <typename U, typename V, std::enable_if_t<!isPropertyIgnRefV<U> && isPropertyV<V>>* = nullptr>
+decltype(auto) operator*(U&& t1, const V& t2)
+{
+    return std::forward<U>(t1) * t2();
+}
+template <typename U, typename V, std::enable_if_t<!isPropertyIgnRefV<U> && isPropertyV<V>>* = nullptr>
+decltype(auto) operator/(U&& t1, const V& t2)
+{
+    return std::forward<U>(t1) / t2();
+}
+template <typename U, typename V, std::enable_if_t<!isPropertyIgnRefV<U> && isPropertyV<V>>* = nullptr>
+decltype(auto) operator%(U&& t1, const V& t2)
+{
+    return std::forward<U>(t1) % t2();
+}
+template <typename U, typename V, std::enable_if_t<!isPropertyIgnRefV<U> && isPropertyV<V>>* = nullptr>
+decltype(auto) operator+(U&& t1, const V& t2)
+{
+    return std::forward<U>(t1) + t2();
+}
+template <typename U, typename V, std::enable_if_t<!isPropertyIgnRefV<U> && isPropertyV<V>>* = nullptr>
+decltype(auto) operator-(U&& t1, const V& t2)
+{
+    return std::forward<U>(t1) - t2();
+}
+template <typename U, typename V, std::enable_if_t<!isPropertyIgnRefV<U> && isPropertyV<V>>* = nullptr>
+decltype(auto) operator<<(U&& t1, const V& t2)
+{
+    return std::forward<U>(t1) << t2();
+}
+template <typename U, typename V, std::enable_if_t<!isPropertyIgnRefV<U> && isPropertyV<V>>* = nullptr>
+decltype(auto) operator>>(U&& t1, const V& right)
+{
+    return std::forward<U>(t1) << right();
+}
+template <typename U, typename V, std::enable_if_t<!isPropertyIgnRefV<U> && isPropertyV<V>>* = nullptr>
+decltype(auto) operator<(U&& t1, const V& t2)
+{
+    return std::forward<U>(t1) < t2();
+}
+template <typename U, typename V, std::enable_if_t<!isPropertyIgnRefV<U> && isPropertyV<V>>* = nullptr>
+decltype(auto) operator>(U&& t1, const V& t2)
+{
+    return std::forward<U>(t1) > t2();
+}
+template <typename U, typename V, std::enable_if_t<!isPropertyIgnRefV<U> && isPropertyV<V>>* = nullptr>
+decltype(auto) operator<=(U&& t1, const V& t2)
+{
+    return std::forward<U>(t1) <= t2();
+}
+template <typename U, typename V, std::enable_if_t<!isPropertyIgnRefV<U> && isPropertyV<V>>* = nullptr>
+decltype(auto) operator>=(U&& t1, const V& t2)
+{
+    return std::forward<U>(t1) >= t2();
+}
+template <typename U, typename V, std::enable_if_t<!isPropertyIgnRefV<U> && isPropertyV<V>>* = nullptr>
+decltype(auto) operator==(U&& t1, const V& t2)
+{
+    return std::forward<U>(t1) == t2();
+}
+template <typename U, typename V, std::enable_if_t<!isPropertyIgnRefV<U> && isPropertyV<V>>* = nullptr>
+decltype(auto) operator!=(U&& t1, const V& t2)
+{
+    return std::forward<U>(t1) != t2();
+}
+template <typename U, typename V, std::enable_if_t<!isPropertyIgnRefV<U> && isPropertyV<V>>* = nullptr>
+decltype(auto) operator&(U&& t1, const V& t2)
+{
+    return std::forward<U>(t1) & t2();
+}
+template <typename U, typename V, std::enable_if_t<!isPropertyIgnRefV<U> && isPropertyV<V>>* = nullptr>
+decltype(auto) operator^(U&& t1, const V& t2)
+{
+    return std::forward<U>(t1) ^ t2();
+}
+template <typename U, typename V, std::enable_if_t<!isPropertyIgnRefV<U> && isPropertyV<V>>* = nullptr>
+decltype(auto) operator|(U&& t1, const V& t2)
+{
+    return std::forward<U>(t1) | t2();
+}
+template <typename U, typename V, std::enable_if_t<!isPropertyIgnRefV<U> && isPropertyV<V>>* = nullptr>
+decltype(auto) operator&&(U&& t1, const V& t2)
+{
+    return std::forward<U>(t1) && t2();
+}
+template <typename U, typename V, std::enable_if_t<!isPropertyIgnRefV<U> && isPropertyV<V>>* = nullptr>
+decltype(auto) operator||(U&& t1, const V& t2)
+{
+    return std::forward<U>(t1) || t2();
+}
+#pragma endregion
 #pragma region global operators(property vs.property)
 template <class U, class V, std::enable_if_t<isPropertyV<U> && isPropertyV<V>>* = nullptr>
 decltype(auto) operator*(const U& t1, const V& t2)
