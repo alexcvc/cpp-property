@@ -61,7 +61,7 @@ public:
     using ValueType = std::remove_cv_t<std::remove_reference_t<T>>;  // std::remove_cvref_t for C++20
     using ReturnType = T;
 
-    // copy constructors are prohibided
+    // copy constructors are prohibited
     PropertyBase(const PropertyBase&) = delete;
     PropertyBase(PropertyBase&&) = delete;
 
