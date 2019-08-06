@@ -176,6 +176,7 @@ public:
     }
 #pragma endregion
 #pragma region rvalue operators
+/*
     decltype(auto) operator[](std::size_t i) && { return std::move(*this).Derived()()[i]; }
     decltype(auto) operator++(int) && { return std::move(*this).Derived()()++; }
     decltype(auto) operator--(int) && { return std::move(*this).Derived()()--; }
@@ -236,6 +237,7 @@ public:
     {
         return operator=(std::move(*this).Derived()() ^ right);
     }
+*/
 #pragma endregion
 };
 
