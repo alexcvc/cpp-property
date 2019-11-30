@@ -532,6 +532,8 @@ public:
     using ValueType = typename Base::ValueType;
     using ReturnType = typename Base::ReturnType;
 
+    Property() = delete;
+
     template <class G, class S, PropertyMode m = Mode, std::enable_if_t<m == PropertyMode::Default>* = nullptr>
     Property(G get_f, S set_f) : getter_(get_f), setter_(set_f)
     {
@@ -551,9 +553,9 @@ public:
                       "Not satisfied: set_f(const ValueType&) -> void");
     }
 
-    // copy constructor (delete)
-    Property(const Property&) = delete;
-    Property(Property&&) = delete;
+    // copy/move constructor (nothig to do)
+    Property(const Property&) {}
+    Property(Property&&) {}
 
     // copy assign operator
     decltype(auto) operator=(const Property& right) const { return Base::operator=(right()); }
@@ -617,9 +619,9 @@ public:
         entity_ = std::forward<V>(initial);
     }
 
-    // copy constructor (delete)
-    AutoProperty(const AutoProperty&) = delete;
-    AutoProperty(AutoProperty&&) = delete;
+    // copy/move constructor
+    AutoProperty(const AutoProperty& ap) { entity_ = ap.entity_; }
+    AutoProperty(AutoProperty&& ap) { entity_ = std::move(ap.entity_); }
 
     // implicit cast (override)
     operator ReturnType() const& { return Get(); }
