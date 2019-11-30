@@ -107,13 +107,13 @@ public:
     decltype(auto) operator[](std::size_t i) const& { return Derived()()[i]; }
     decltype(auto) operator++(int) const&
     {
-        auto prev = Derived()();
-        operator=(Derived()() + 1);
+        const auto prev = Derived()();
+        operator=(prev + 1);
         return prev;
     }
     decltype(auto) operator--(int) const&
     {
-        auto prev = Derived()();
+        const auto prev = Derived()();
         operator=(prev - 1);
         return prev;
     }
