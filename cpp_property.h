@@ -108,7 +108,7 @@ public:
     decltype(auto) operator++(int) const&
     {
         auto prev = Derived()();
-        operator=(prev + 1);
+        operator=(Derived()() + 1);
         return prev;
     }
     decltype(auto) operator--(int) const&
@@ -117,60 +117,60 @@ public:
         operator=(prev - 1);
         return prev;
     }
-    decltype(auto) operator++() const& { return operator=(Derived()() + 1); }
-    decltype(auto) operator--() const& { return operator=(Derived()() - 1); }
+    auto operator++() const& { return operator=(Derived()() + 1); }
+    auto operator--() const& { return operator=(Derived()() - 1); }
     decltype(auto) operator~() const& { return ~Derived()(); }
     decltype(auto) operator!() const& { return !Derived()(); }
     decltype(auto) operator-() const& { return -Derived()(); }
     decltype(auto) operator+() const& { return +Derived()(); }
 
     template <typename U>
-    decltype(auto) operator*=(const U& right) const&
+    auto operator*=(const U& right) const&
     {
         return operator=(Derived()() * right);
     }
     template <typename U>
-    decltype(auto) operator/=(const U& right) const&
+    auto operator/=(const U& right) const&
     {
         return operator=(Derived()() / right);
     }
     template <typename U>
-    decltype(auto) operator%=(const U& right) const&
+    auto operator%=(const U& right) const&
     {
         return operator=(Derived()() % right);
     }
     template <typename U>
-    decltype(auto) operator+=(const U& right) const&
+    auto operator+=(const U& right) const&
     {
         return operator=(Derived()() + right);
     }
     template <typename U>
-    decltype(auto) operator-=(const U& right) const&
+    auto operator-=(const U& right) const&
     {
         return operator=(Derived()() - right);
     }
     template <typename U>
-    decltype(auto) operator<<=(const U& right) const&
+    auto operator<<=(const U& right) const&
     {
         return operator=(Derived()() << right);
     }
     template <typename U>
-    decltype(auto) operator>>=(const U& right) const&
+    auto operator>>=(const U& right) const&
     {
         return operator=(Derived()() >> right);
     }
     template <typename U>
-    decltype(auto) operator&=(const U& right) const&
+    auto operator&=(const U& right) const&
     {
         return operator=(Derived()() & right);
     }
     template <typename U>
-    decltype(auto) operator|=(const U& right) const&
+    auto operator|=(const U& right) const&
     {
         return operator=(Derived()() | right);
     }
     template <typename U>
-    decltype(auto) operator^=(const U& right) const&
+    auto operator^=(const U& right) const&
     {
         return operator=(Derived()() ^ right);
     }
